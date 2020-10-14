@@ -1,0 +1,26 @@
+{
+  "name": "4-exercise-tracker",
+  "version": "1.0.0",
+  "description": "Create a user (new-user)  and (add) exercises to its log. Allow to query exercises (log) by dates through URL parameters. Three routes required.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "exercise",
+    "tracker",
+    "freecodecamp",
+    "node"
+  ],
+  "author": "David Quintero",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.3.2",
+    "express": "^4.17.1",
+    "joi": "^17.2.1",
+    "joi-objectid": "^3.0.1",
+    "mongoose": "^5.10.9"
+  }
+}
