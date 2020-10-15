@@ -1,7 +1,7 @@
 {
   "name": "4-exercise-tracker",
   "version": "1.0.0",
-  "description": "Create a user (new-user)  and (add) exercises to its log. Allow to query exercises (log) by dates through URL parameters. Three routes required.",
+  "description": "Create a (new-user) and (add) exercises to its log. Allow to query (log) by dates through URL parameters.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "joi": "^17.2.1",
     "joi-objectid": "^3.0.1",
+    "luxon": "^1.25.0",
     "mongoose": "^5.10.9"
   }
 }

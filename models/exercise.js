@@ -1,6 +1,5 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
-const { userSchema } = require("./user");
 
 const exerciseSchema = new mongoose.Schema({
   userId: {
@@ -22,6 +21,7 @@ const exerciseSchema = new mongoose.Schema({
   date: {
     type: Date,
     required: true,
+    default: Date.now,
   },
 });
 
@@ -32,7 +32,7 @@ function validateExercise(exercise) {
     userId: Joi.objectId(),
     description: Joi.string().min(3).max(255).required(),
     duration: Joi.number().min(1).max(120).required(),
-    date: Joi.date(),
+    date: Joi.date().optional(),
   });
   return schema.validate(exercise);
 }
