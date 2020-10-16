@@ -14,10 +14,8 @@ router.post("/", validateObjectId, async (req, res) => {
     const exercise = new Exercise(req.body);
     await exercise.save();
 
-    console.log(exercise);
-
     const user = await User.findById({ _id: req.body.userId });
-    if (!user) res.status(404).send("No user matching ID");
+    if (!user) res.status(404).send("User ID not found");
 
     const result = {
       _id: user._id,
