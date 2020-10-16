@@ -9,6 +9,7 @@ router.get("/", async (req, res) => {
   const id = req.query.userId;
   const dateFrom = req.query.from;
   const dateTo = req.query.to;
+  const limit = 0 || parseInt(req.query.limit);
   let log;
 
   const user = await User.findById(id);
@@ -16,7 +17,7 @@ router.get("/", async (req, res) => {
 
   if (!dateFrom && !dateTo) {
     console.log("full query");
-    log = await Exercise.find({ userId: id });
+    log = await Exercise.find({ userId: id }).limit(limit);
     if (!log) return res.status(404).send("No logs for user.");
   } else {
     let query;
@@ -29,13 +30,12 @@ router.get("/", async (req, res) => {
     } else if (!dateTo) {
       console.log("from");
       query = { $gte: new Date(dateFrom).toISOString() };
-      //   query = { $gte: DateTime.toISO(dateFrom) };
     }
 
     log = await Exercise.find({
       userId: id,
       date: query,
-    });
+    }).limit(limit);
   }
 
   const exercises = log.map((log) => {
