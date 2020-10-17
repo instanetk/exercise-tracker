@@ -1,5 +1,3 @@
-const { DateTime } = require("luxon");
-const validateObjectId = require("../middleware/validateObjectId");
 const { Exercise } = require("../models/exercise");
 const { User } = require("../models/user");
 const express = require("express");
