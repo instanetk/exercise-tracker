@@ -1,4 +1,3 @@
-const { DateTime } = require("luxon");
 const validateObjectId = require("../middleware/validateObjectId");
 const { Exercise, validate } = require("../models/exercise");
 const { User } = require("../models/user");
@@ -20,12 +19,20 @@ router.post("/", validateObjectId, async (req, res) => {
     const result = {
       _id: user._id,
       username: user.name,
-      date: DateTime.fromObject(exercise.date)
-        .toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
-        .replace(/,/g, ""),
+      date: new Date(exercise.date)
+        .toLocaleString("en-US", {
+          weekday: "short",
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
+        .replace(/,/g, "")
+        .getUTCDay(),
       duration: exercise.duration,
       description: exercise.description,
     };
+
+    console.log(result.date);
 
     res.send(result);
   } catch (ex) {
