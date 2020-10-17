@@ -19,7 +19,11 @@ router.post("/", validateObjectId, async (req, res) => {
     const result = {
       _id: user._id,
       username: user.name,
-      date: new Date(exercise.date)
+      date: new Date(
+        new Date(
+          exercise.date.getTime() + exercise.date.getTimezoneOffset() * 60000
+        )
+      )
         .toLocaleString("en-US", {
           weekday: "short",
           year: "numeric",
@@ -30,7 +34,6 @@ router.post("/", validateObjectId, async (req, res) => {
       duration: exercise.duration,
       description: exercise.description,
     };
-
     res.send(result);
   } catch (ex) {
     console.log(ex.message);
