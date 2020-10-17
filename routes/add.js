@@ -26,13 +26,10 @@ router.post("/", validateObjectId, async (req, res) => {
           month: "short",
           day: "numeric",
         })
-        .replace(/,/g, "")
-        .getUTCDay(),
+        .replace(/,/g, ""),
       duration: exercise.duration,
       description: exercise.description,
     };
-
-    console.log(result.date);
 
     res.send(result);
   } catch (ex) {
