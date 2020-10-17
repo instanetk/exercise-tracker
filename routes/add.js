@@ -20,9 +20,9 @@ router.post("/", validateObjectId, async (req, res) => {
     const result = {
       _id: user._id,
       username: user.name,
-      date: DateTime.fromObject(exercise.date).toLocaleString(
-        DateTime.DATE_MED_WITH_WEEKDAY
-      ),
+      date: DateTime.fromObject(exercise.date)
+        .toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)
+        .replace(/,/g, ""),
       duration: exercise.duration,
       description: exercise.description,
     };
