@@ -8,6 +8,7 @@ const express = require("express");
 
 module.exports = function (app) {
   app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
   app.use(express.static("public"));
   app.use("/api/exercise/new-user", user);
   app.use("/api/exercise/add", add);
