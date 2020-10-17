@@ -16,21 +16,23 @@ router.post("/", validateObjectId, async (req, res) => {
     const user = await User.findById({ _id: req.body.userId });
     if (!user) res.status(404).send("User ID not found");
 
+    const date = new Date(
+      new Date(
+        exercise.date.getTime() + exercise.date.getTimezoneOffset() * 60000
+      )
+    )
+      .toLocaleString("en-US", {
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+      })
+      .replace(/,/g, "");
+
     const result = {
       _id: user._id,
       username: user.name,
-      date: new Date(
-        new Date(
-          exercise.date.getTime() + exercise.date.getTimezoneOffset() * 60000
-        )
-      )
-        .toLocaleString("en-US", {
-          weekday: "short",
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        })
-        .replace(/,/g, ""),
+      date: date,
       duration: exercise.duration,
       description: exercise.description,
     };
