@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
   const user = new User({ name });
   await user.save();
 
-  res.send({ username: user.name, _id: user._id });
+  res.json({ username: user.name, _id: user._id });
 });
 
 module.exports = router;
