@@ -42,12 +42,14 @@ router.get("/", async (req, res) => {
     const each = {
       description: log.description,
       duration: log.duration,
-      date: new Date(log.date).toLocaleString("en-US", {
-        weekday: "short",
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      }),
+      date: new Date(log.date)
+        .toLocaleString("en-US", {
+          weekday: "short",
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
+        .replace(/,/g, ""),
     };
 
     return each;
